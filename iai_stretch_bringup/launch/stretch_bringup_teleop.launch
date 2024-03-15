@@ -1,0 +1,23 @@
+<launch>
+
+
+  <arg name="mode"          default="navigation"       doc="mode of /stretch_drier action server" />
+
+  <arg name="teleop_type"   default="joystick"         doc="how to teleop ('keyboard', 'joystick', or 'none')" />
+  <arg name="linear"        default="1.0"              doc="linear speed (m/s)" />
+  <arg name="angular"       default="1.0"              doc="angular speed (rad/s)" />
+  <arg name="twist_topic"   default="/stretch/cmd_vel" doc="topic to command Twist messages" />
+  <arg name="joystick_port" default="/dev/input/js0"   doc="joystick USB device name" />
+
+  <include file="$(find stretch_core)/launch/stretch_driver.launch">
+    <param name="mode" value="navigation"/>
+  </include>
+
+  <include file="$(find stretch_core)/launch/teleop_twist.launch">
+    <arg name="teleop_type"   value="$(arg teleop_type)"/>
+    <arg name="linear"        value="$(arg linear)"/>
+    <arg name="angular"       value="$(arg angular)"/>
+    <arg name="joystick_port" value="$(arg joystick_port)"/>
+  </include>  
+
+</launch>
