@@ -1,0 +1,8 @@
+<launch>
+
+  <arg name="map_yaml"                doc="filepath to previously captured map (required)" />
+  <arg name="rviz"     default="false" doc="whether to show Rviz" />
+
+  <include file="$(find stretch_navigation)/launch/navigation.launch" pass_all_args="true"/>
+  <include file="$(find stretch_core)/launch/d435i_low_resolution.launch"/>
+</launch>
